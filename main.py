@@ -106,4 +106,4 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.'''
         )    
     
     else:
-        sys.exit(f'Sonar: Missing arguments. Try \'python3 {sys.argv[0]} --help\' for more information')
+        sys.exit(f'StreamDigger: Missing arguments. Try \'python3 {sys.argv[0]} --help\' for more information')
