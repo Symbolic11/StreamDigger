@@ -34,13 +34,18 @@ python3 main.py bladerunner 2049 --plugin ultravid
 python3 main.py konosuba --plugin 9anime
 ```
 
+# Images
+![9anime example](images/9anime_example.png)
+![ultravid example](images/ultravid_example.png)
+![ev01 example](images/ev01_example.png)
+
 # Help
 You can help by
 - Writing plugins
 - Refactoring code (it tends to be a bit messy sometimes)
 - Suggesting idea's
 
-All help is welcome
+All help is welcome <3
 
 # License
 ```

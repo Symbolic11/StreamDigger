@@ -10,7 +10,7 @@ class Plugin():
         self.about = 'Plugin for ev01.net'
         self.author = 'Symbolic'
         self.home = 'https://ev01.net'
-        self.rows = ['Title', 'Type', 'Quality', 'Duration', 'Release date', 'Link']
+        self.rows = ['Title', 'Link', 'Quality', 'Release date', 'Duration', 'Season', 'Episode', 'Type']
     
     def format_string(self, raw):
         return raw.replace(' ', '-')
@@ -33,7 +33,6 @@ class Plugin():
         for i in s.findAll('div', {'class': 'flw-item'}):
             s = bs(str(i), 'html.parser')
 
-            image = s.find('img', {'class': 'film-poster-img lazyload'}).attrs['data-src']
             info = s.find('h2', {'class': 'film-name'}).find('a', href=True)
 
             url = info.attrs['href']
@@ -58,7 +57,6 @@ class Plugin():
             data.append({
                 'name': name,
                 'link': url,
-                'image': image,
                 'quality': quality,
                 'release': release,
                 'duration': duration,
