@@ -1,4 +1,5 @@
 from src.core import Core
+from src.utils import *
 from bs4 import BeautifulSoup as bs
 
 class Plugin():
@@ -26,7 +27,10 @@ class Plugin():
         for i in s.find_all('div', {'class': 'flw-item item-qtip'}):
             s = bs(str(i), 'html.parser')
             
-            z = bs(str(s.find('h3', {'class': 'film-name'})), 'html.parser')
+            z = bs(str(s.find(
+                'h3',
+                {'class': 'film-name'}
+            )), 'html.parser')
             
             info = z.find('a', href=True)
             title = info.attrs['title']

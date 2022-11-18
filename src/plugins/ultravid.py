@@ -1,6 +1,5 @@
 from src.core import Core
 from src.utils import *
-
 from bs4 import BeautifulSoup as bs
 
 class Plugin():
@@ -43,18 +42,18 @@ class Plugin():
 
                 info = bs(str(s.find(
                     'div', 
-                    {'id': 'hidden_tip'
-                })), 'html.parser')
+                    {'id': 'hidden_tip'}
+                )), 'html.parser')
 
                 title = clean(info.find(
                     'div', 
-                    {'class': 'qtip-title'
-                }).text)
+                    {'class': 'qtip-title'}
+                ).text)
 
                 imdb_rating = clean(info.find(
                     'div', 
-                    {'class': 'jt-info jt-imdb'
-                }).text)
+                    {'class': 'jt-info jt-imdb'}
+                ).text)
 
                 release = clean(info.find('a', href=True).text)
                 release = release if is_valid_year(release) else None

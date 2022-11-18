@@ -1,6 +1,5 @@
 from src.core import Core
 from src.utils import *
-
 from bs4 import BeautifulSoup as bs
 
 class Plugin():
@@ -33,21 +32,29 @@ class Plugin():
         for i in s.find_all('article', {'class': 'post dfx fcl movies'}):
             s = bs(str(i), 'html.parser')
 
-            title = clean(s.find('h2', {'class': 'entry-title'}).text)
-            link = clean(s.find('a', {'class': 'lnk-blk'}, href=True).attrs['href'])
-            release = clean(s.find('div', {'class': 'entry-meta'}).text)
+            title = clean(s.find(
+                'h2',
+                {'class': 'entry-title'}
+            ).text)
+
+            link = clean(s.find(
+                'a', 
+                {'class': 'lnk-blk'}, 
+                href=True
+            ).attrs['href'])
+
+            release = clean(s.find(
+                'div', 
+                {'class': 'entry-meta'}
+            ).text)
 
             duration = s.find('span', {'class': 'duration'})
-            if duration:
-                duration = clean(duration.text)
-            else:
-                duration = 'N/A'
+            if duration: duration = clean(duration.text)
+            else: duration = 'N/A'
             
             quality = s.find('span', {'class': 'quality'})
-            if quality:
-                quality = clean(quality.text)
-            else:
-                quality = 'N/A'
+            if quality: quality = clean(quality.text)
+            else: quality = 'N/A'
 
             data.append({
                 'title': title,

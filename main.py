@@ -55,6 +55,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.'''
     )
 
     parser.add_argument(
+        '--only-urls',
+        action='store_true',
+        dest='only_urls',
+        default=False,
+        help='Only display the fetched urls, nothing more'
+    )
+
+    parser.add_argument(
         '--shows',
         action='store_true',
         dest='sort_by_shows',
@@ -95,15 +103,27 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.'''
                 continue
 
             table.append(plugin.format_data(item))
+        
+        if args.only_urls:
+            for item in resp:
+                url = item.get('link')
+                if not url:
+                    url = item.get('url')
+                
+                if not url: # incase no url was found, just skip
+                    continue
 
-        print(
-            tabulate(
-                table, 
-                headers=plugin.rows,
-                tablefmt='simple_outline',
-                missingval='?'
-            )
-        )    
+                print(url)
+
+        else:
+            print(
+                tabulate(
+                    table, 
+                    headers=plugin.rows,
+                    tablefmt='simple_outline',
+                    missingval='?'
+                )
+            )    
     
     else:
         sys.exit(f'StreamDigger: Missing arguments. Try \'python3 {sys.argv[0]} --help\' for more information')

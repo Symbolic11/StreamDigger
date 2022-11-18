@@ -1,6 +1,5 @@
 from src.core import Core
 from src.utils import *
-
 from bs4 import BeautifulSoup as bs
 
 class Plugin():
@@ -43,9 +42,15 @@ class Plugin():
 
             quality = s.find('span', {'class': 'fi-ql'}).text
 
-            s = bs(str(s.find('div', {'class': 'film-infor'})), 'html.parser')
+            s = bs(str(s.find(
+                'div', 
+                {'class': 'film-infor'}
+                )
+            ), 'html.parser')
+
             info = s.find_all('span')
 
+            # everything is None by default
             release = duration = season = episode = None
             if is_valid_year(info[1].text):
                 release = info[1].text

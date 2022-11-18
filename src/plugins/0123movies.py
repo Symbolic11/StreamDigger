@@ -1,6 +1,5 @@
 from src.core import Core
 from src.utils import *
-
 from bs4 import BeautifulSoup as bs
 
 class Plugin():
@@ -38,8 +37,14 @@ class Plugin():
             title = info.attrs['title']
             link = info.attrs['href']
 
-            quality = clean(s.find('span', {'class': 'mli-quality'}).text)
-            release = clean(s.find('span', {'class': 'year'}).text)
+            quality = clean(s.find(
+                'span', 
+                {'class': 'mli-quality'}
+            ).text)
+
+            release = clean(s.find(
+                'span', {'class': 'year'}
+            ).text)
 
             duration = s.find('span', {'class': 'duration'})
             if duration: duration = clean(duration.text)
